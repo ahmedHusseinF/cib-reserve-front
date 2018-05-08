@@ -1,0 +1,43 @@
+<div class=" align-items-center login">
+    <div class="row">
+        <div class="col-md-4 content">
+
+            <form class="login-form" [formGroup]="loginForm" novalidate>
+                <h1 class="form-title font-white">Login</h1>
+                <br>
+                <div class="form-group">
+                    <div class="input-icon">
+                        <i class="fa fa-user"></i>
+                        <input type="text" class="form-control form-control-solid placeholder-no-fix" required id="mobile_number" placeholder="Email"
+                            formControlName="email" required>
+                    </div>
+                </div>
+                <br>
+                <div class="form-group">
+                    <div class="input-icon">
+                        <i class="fa fa-key"></i>
+                        <input type="password" placeholder="Password" class="form-control form-control-solid placeholder-no-fix" formControlName="password"
+                            id="Mpin" required>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <br>
+                <div class="row">
+                    <div class="col-6">
+                        <button type="button" (click)="login(loginForm.value,loginForm.valid)" class="btn blue uppercase">
+                            <b>Login</b>
+                        </button>
+                    </div>
+                </div>
+
+                <div *ngIf="errorMsg" class="alert">
+                    <p style="color:crimson">{{errorMsg}}</p>
+                </div>
+                <div *ngIf="successMsg" class="alert">
+                    <p style="color:green">{{successMsg}}</p>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

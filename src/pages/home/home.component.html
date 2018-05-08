@@ -1,0 +1,48 @@
+<div class="col-md-6 col-sm-6">
+    <div class="portlet light ">
+        <div class="portlet-title">
+            <div class="caption caption-md">
+                <i class="icon-bar-chart font-dark hide"></i>
+                <span class="caption-subject font-dark bold uppercase">Today's Customers - Counter #{{counterNumber}}</span>
+            </div>
+        </div>
+        <div class="portlet-body">
+            <div class="table-scrollable table-scrollable-borderless">
+                <table class="table table-hover table-light">
+                    <thead>
+                        <tr class="uppercase">
+                            <th> Name </th>
+                            <th> From </th>
+                            <th> To </th>
+                            <th> Status </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let frame of dayTimeFrames">
+                            <td>
+                                {{frame.name}}
+                            </td>
+                            <td>
+                                {{frame.start}}
+                            </td>
+                            <td>
+                                {{frame.end}}
+                            </td>
+                            <td *ngIf="frame.status == 'reviewed'">
+                                <i class="fa fa-icon-ok"></i>
+                            </td>
+                            <td *ngIf="frame.status == 'passed'">
+                                <a (click)="showModalToReview()">
+                                    <i class="fa fa-icon-pencil"></i>
+                                </a>
+                            </td>
+                            <td *ngIf="frame.status == 'coming'">
+                                <i class="fa fa-icon-spinner"></i>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

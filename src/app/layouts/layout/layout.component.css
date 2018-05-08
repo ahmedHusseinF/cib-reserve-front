@@ -1,0 +1,12 @@
+.page-header.navbar .menu-toggler{
+    background-image: url('./../../../assets/layouts/layout2/img/sidebar_toggler_icon_blue.png') !important;
+}
+/* .page-sidebar .page-sidebar-menu{
+    min-height:570px !important;
+    display: block !important;
+} */
+
+.page-footer{
+    background-color:#1f2b3d !important;
+    margin-top: 0 !important;
+}
