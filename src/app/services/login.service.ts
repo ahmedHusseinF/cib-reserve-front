@@ -24,12 +24,20 @@ export class LoginService {
       user.email,
       user.password
     );
-    const c = await this.db
+    const c1 = await this.db
       .collection("/Users")
       .ref.where("privilage", "==", "admin")
       .where("email", "==", user.email)
       .get();
+    // LOGICAL OR OPERATION
+    const c2 = await this.db
+      .collection("/Users")
+      .ref.where("privilage", "==", "superadmin")
+      .where("email", "==", user.email)
+      .get();
 
-    return { user: c.docs[0].data(), auth };
+    let c = [...c1.docs, ...c2.docs];
+
+    return { user: c[0].data(), auth };
   }
 }

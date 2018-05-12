@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { Title } from "@angular/platform-browser";
-import { LocalStorageService } from "angular-2-local-storage";
 import { dashBoardService } from "../../app/services/dashboard.service";
 import { GlobalVariablesService } from "../../app/services/global-variables.service";
+import { Modal } from "ngx-modialog/plugins/bootstrap";
 
 @Component({
   selector: "app-home",
@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private title: Title,
+    private modal: Modal,
     private service: dashBoardService,
     private globals: GlobalVariablesService
   ) {
@@ -31,7 +32,24 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.service.dashBoard().then(res => {
       console.log(res, "home component");
+      this.dayTimeFrames = res;
     });
+  }
+
+  async showModalToReview(slot) {
+    let modalAnswer = await this.modal
+      .prompt()
+      .title("Review this client")
+      .open();
+    try {
+      await this.service.submitReview(await modalAnswer.result, slot);
+      this.modal
+        .alert()
+        .message("Submitted the note")
+        .open();
+    } catch (e) {
+      //canceled review
+    }
   }
 
   ngOnDestroy() {

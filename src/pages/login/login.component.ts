@@ -8,7 +8,6 @@ import {
 import { FormsModule } from "@angular/forms";
 import { Title } from "@angular/platform-browser";
 import { LoginService } from "../../app/services/login.service";
-import { LocalStorageService } from "angular-2-local-storage";
 import { Router } from "@angular/router";
 
 @Component({
@@ -24,7 +23,6 @@ export class LoginComponent implements OnInit {
   constructor(
     private title: Title,
     private service: LoginService,
-    private localStorage: LocalStorageService,
     private formbuilder: FormBuilder,
     private router: Router
   ) {
@@ -46,7 +44,7 @@ export class LoginComponent implements OnInit {
         "",
         [
           <any>Validators.required,
-          <any>Validators.minLength(8),
+          <any>Validators.minLength(7),
           <any>Validators.maxLength(15)
         ]
       ]
@@ -77,6 +75,7 @@ export class LoginComponent implements OnInit {
         if (res.user) {
           localStorage.setItem("name", res.user.name);
           localStorage.setItem("token", res.auth.refreshToken);
+          sessionStorage.setItem("priv", res.user.privilage);
           sessionStorage.setItem("branch", res.user.branch);
           sessionStorage.setItem("counter", res.user.counter);
           this.successMsg = "Logged in Successfully";

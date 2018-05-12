@@ -1,0 +1,84 @@
+<div class="row">
+    <div class="portlet box blue col-md-12 col-sm-12">
+        <div class="portlet-title">
+            <div class="caption">
+                <i class="fa fa-user"></i>&nbsp;Create Admin</div>
+        </div>
+        <div class="portlet-body">
+            <form class="form form-row-stripped form-bordered" [formGroup]="form" novalidate (ngSubmit)="createUser(form.value,form.valid)">
+                {{message}}
+                <div class="form-body">
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label for="m-number">Mobile Number
+                                <span class="required aria-required">*</span>
+                            </label>
+                            <input type="text" id="m-number" autocomplete="mobile" formControlName="mobile" class="form-control" maxlength="11" required>
+                            <div *ngIf="validationErrors?.mobile">
+                                <span class="alert" *ngFor="let error of validationErrors.mobile"> {{error.message}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <h3 class="font-grey-cascade">Information</h3>
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            <label for="fname">Full Name
+                                <span class="required aria-required">*</span>
+                            </label>
+                            <input type="text" id="fname" autocomplete="name" formControlName="name" class="form-control" required>
+                            <br>
+                            <div *ngIf="validationErrors?.name">
+                                <span class="alert" *ngFor="let error of validationErrors.name"> {{error.message}}</span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-3">
+                            <label for="birthdate">Email
+                                <span class="required aria-required">*</span>
+                            </label>
+                            <input type="email" id="birthdate" autocomplete="email" formControlName="email" class="form-control" required>
+                            <br>
+                            <div *ngIf="validationErrors?.email">
+                                <span class="alert" *ngFor="let error of validationErrors.email"> {{error.message}}</span>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="gender">Branches</label>
+                            <select formControlName="branch" id="gender" class="form-control">
+                                <option *ngFor="let branch of branches" [ngValue]="branch">{{branch}}</option>
+                            </select>
+                            <br>
+                            <div *ngIf="validationErrors?.gender">
+                                <span class="alert" *ngFor="let error of validationErrors.gender"> {{error.message}}</span>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="coutner">Counter Number</label>
+                            <input type="text" id="counter" formControlName="counter" class="form-control" required>
+                            <div *ngIf="validationErrors?.counter">
+                                <span class="alert" *ngFor="let error of validationErrors.counter"> {{error.message}}</span>
+                            </div>
+                            <br>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label for="occupation">Address</label>
+                            <input type="text" autocomplete="address-level1" formControlName="address" id="occupation " class="form-control ">
+                            <br>
+                            <div *ngIf="validationErrors?.address ">
+                                <span class="alert" *ngFor="let error of validationErrors.address "> {{error.message}}</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <br>
+
+                    <div class=" ">
+                        <button type="submit " class="btn btn-lg blue">Create</button>
+                    </div>
+                </div>
+            </form>
+        </div>

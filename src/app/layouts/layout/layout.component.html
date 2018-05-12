@@ -65,6 +65,13 @@
                         <span class="arrow"></span>
                     </a>
                 </li>
+                <li class="nav-item start" *ngIf="isSuperAdmin()">
+                    <a routerLink="/dashboard/admin/create" routerLinkActive="active" class="nav-link nav-toggle">
+                        <i class="fa fa-registered"></i>
+                        <span class="title">Create Counter Admin</span>
+                        <span class="arrow"></span>
+                    </a>
+                </li>
             </ul>
 
             <!-- END SIDEBAR MENU -->

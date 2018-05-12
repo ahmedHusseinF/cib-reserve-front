@@ -17,6 +17,12 @@ export class LayoutComponent implements OnInit {
     this.cdRef.detectChanges();
   }
 
+  isSuperAdmin() {
+    let priv = sessionStorage.getItem("priv");
+
+    return priv === "superadmin";
+  }
+
   getUserName() {
     return localStorage.getItem("name");
   }

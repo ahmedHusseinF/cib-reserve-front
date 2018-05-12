@@ -20,7 +20,7 @@
                     <tbody>
                         <tr *ngFor="let frame of dayTimeFrames">
                             <td>
-                                {{frame.name}}
+                                {{frame.clientId}}
                             </td>
                             <td>
                                 {{frame.start}}
@@ -29,15 +29,15 @@
                                 {{frame.end}}
                             </td>
                             <td *ngIf="frame.status == 'reviewed'">
-                                <i class="fa fa-icon-ok"></i>
+                                <i class="fa fa-check"></i>
                             </td>
                             <td *ngIf="frame.status == 'passed'">
-                                <a (click)="showModalToReview()">
-                                    <i class="fa fa-icon-pencil"></i>
+                                <a (click)="showModalToReview(frame)">
+                                    <i class="fa fa-pencil"></i>
                                 </a>
                             </td>
                             <td *ngIf="frame.status == 'coming'">
-                                <i class="fa fa-icon-spinner"></i>
+                                <i class="fa fa-spinner"></i>
                             </td>
                         </tr>
                     </tbody>
